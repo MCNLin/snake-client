@@ -33,11 +33,12 @@ const setupInput = function () {
   stdin.setRawMode(true);
   stdin.setEncoding("utf8");
   stdin.resume();
+  stdin.on("data", handleUserInput);//moved here
   return stdin;
 };
 
 const handleUserInput = function (data) {
-  stdin.on("data", handleUserInput);
+  stdin.on("data", handleUserInput)
 };
 setupInput();
 module.exports = {connect};
