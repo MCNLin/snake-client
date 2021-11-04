@@ -16,6 +16,8 @@ const connect = function () {
 
   conn.on('connect', () => { 
     conn.write("Name: MCN")
+    conn.write('Say: wwwwhhhhhhheeeeeeeeee')
+    conn.write('Say: leggoooo')
   });
   conn.on('connect', (connect) => { //when client connects, shows this message
     console.log("Successfully connected to game server");
