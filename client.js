@@ -1,31 +1,26 @@
 const net = require('net');
 
-const {connect} = require('./play');
+// const {connect} = require('./play');
+const connect = function () {
+  const conn = net.createConnection({
+    host: '165.227.47.243',
+    port: 50541
+  });
 
-const conn = net.createConnection({
-  host: '165.227.47.243',
-  port: 50541
-});
-conn.on('connect', () => {
-  conn.write("Name: MCN");   
-});
-conn.on('connect', () => {
-  conn.write('will this work?');   
-});
-conn.on('connect', () => {
-  conn.write("hellllloo");   
-});
-conn.on('connect', () => {
-//   setInterval(() => {conn.write('Move: up')}, 50);
-//   setInterval(() => {conn.write('Move: up')}, 100);
-//   setInterval(() => {conn.write('Move: left')}, 150);
-//   setInterval(() => {conn.write('Move: left')}, 200);
-//   setInterval(() => {conn.write('Move: left')}, 250);
-//   setInterval(() => {conn.write('Move: up')}, 300);
-//   setInterval(() => {conn.write('Move: up')}, 350);
-//   setInterval(() => {conn.write('Move: up')}, 400);
-//   setInterval(() => {conn.write('Move: right')}, 450);
-//   setInterval(() => {conn.write('Move: right')}, 500);
-//   setInterval(() => {conn.write('Move: right')}, 550);
-//   setInterval(() => {conn.write('Move: right')}, 600);
-});
+  // interpret incoming data as text
+  conn.setEncoding("utf8");
+
+  conn.on("data", (data) => {
+    console.log(data);
+  });
+
+  conn.on('connect', () => { 
+    conn.write("Name: MCN")
+  });
+  conn.on('connect', (connect) => { //when client connects, shows this message
+    console.log("Successfully connected to game server");
+  });
+
+  return conn;
+};
+module.exports = {connect};
